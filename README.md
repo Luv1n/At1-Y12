@@ -1,5 +1,27 @@
 # FastFinance API Security Enhancement
 
+## Table of Contents
+
+- [Assessment Overview](#assessment-overview)
+  - [Scenario](#scenario)
+  - [Task](#task)
+- [Front-End Interface](#front-end-interface)
+- [Video Run-through](#video-run-through)
+- [Setup](#setup)
+- [Running the Front-end](#running-the-front-end)
+- [Stage 1 - Basic](#stage-1---basic)
+  - [Stage 1.1 - Password Hashing](#stage-11---password-hashing)
+  - [Stage 1.2 - Input Validation](#stage-12---input-validation)
+  - [Stage 1.3 - Input Sanitization (XSS Vulnerabilities)](#stage-13---input-sanitization-xss-vulnerabilities)
+- [Stage 2 - Intermediate](#stage-2---intermediate)
+  - [Stage 2.1 - Session Management](#stage-21---session-management)
+  - [Stage 2.2 - CSRF Protection](#stage-22---csrf-protection)
+  - [Stage 2.3 - Race Conditions](#stage-23---race-conditions)
+- [Stage 3 - Advanced](#stage-3---advanced)
+  - [Stage 3.1 - Invalid Forwarding](#stage-31---invalid-forwarding)
+  - [Stage 3.2 - Token Storage](#stage-32---token-storage)
+- [Forum API Description](#forum-api-description)
+
 ## Assessment Overview
 
 ### Scenario
@@ -25,6 +47,9 @@ Our front-end for the Forum application is written in **Next.js**.
 There are a few steps to run the front end. First, we must configure the back-end and front-end together:
 
 1. **Clone the GitHub repository:**
+    ```bash
+    git clone https://github.com/R-Ianni/12SE-AT1
+    ```
 
 2. **Install Node.js** (the JS runtime environment).
 
@@ -33,6 +58,10 @@ There are a few steps to run the front end. First, we must configure the back-en
     python3 server.py
     ```
     Host the server on the next available port.
+
+**Note:** Ensure to remove the backslash from the copied URL. The front-end API calls will fail if the URL isn't correct.
+
+**Warning:** Using the run button on the Ed workspace will not host the server. You need to manually open up the terminal and run the Python script to host the Flask back-end server.
 
 ## Running the Front-end
 
@@ -52,11 +81,7 @@ There are a few steps to run the front end. First, we must configure the back-en
 
 ## Stage 1 - Basic
 
-### Problem Description
-
-For Stage 1 of this assignment, you will be tasked with refactoring the Python program to add security features to the forum software application. Specifically, you will implement authentication security features.
-
-#### Stage 1.1 - Password Hashing
+### Stage 1.1 - Password Hashing
 
 **Security Features to Implement:** Confidentiality, Authentication
 
@@ -92,7 +117,7 @@ else:
 
 **Hint:** Use the `hashlib` library for cryptographic hashing.
 
-#### Stage 1.2 - Input Validation
+### Stage 1.2 - Input Validation
 
 **Security Features Addressed:** Integrity, Accountability
 
@@ -116,7 +141,7 @@ def admin_auth_register(email):
 
 **Note:** HTTP servers should primarily obtain data with minimal logic to reduce complexity and improve readability.
 
-#### Stage 1.3 - Input Sanitization (XSS Vulnerabilities)
+### Stage 1.3 - Input Sanitization (XSS Vulnerabilities)
 
 **Vulnerabilities Addressed:** Cross-site Scripting (XSS)
 
@@ -134,11 +159,7 @@ users = {
 
 ## Stage 2 - Intermediate
 
-### Problem Description
-
-In Stage 1 of the assignment, you focused on securing data for the forum application. Stage 2 will focus on improving the security of data transmission and authorization mechanisms.
-
-#### Stage 2.1 - Session Management
+### Stage 2.1 - Session Management
 
 **Execution Efficiency:** Session Management  
 **Vulnerability Addressed:** Broken Authentication and Session Management  
@@ -180,7 +201,7 @@ if user.validate_token(invalid_token):
 - Ensure that the user is authorized to use the session token for every single server route.
 - **Hint:** Create a helper function that can be called inside each route to validate both the session and CSRF token.
 
-#### Stage 2.2 - CSRF Protection
+### Stage 2.2 - CSRF Protection
 
 **Security Features:** Encryption  
 **Vulnerability Addressed:** Cross-site Request Forgery (CSRF)
@@ -229,7 +250,7 @@ const response = await fetch(SERVER_URL + '/auth/login', {
 });
 ```
 
-#### Stage 2.3 - Race Conditions
+### Stage 2.3 - Race Conditions
 
 **Vulnerability Addressed:** Race Conditions
 
@@ -244,13 +265,7 @@ pip install flask[async]
 
 ## Stage 3 - Advanced
 
-### Problem Description
-
-For Stages 1 and 2 of this assignment, you have refactored your code on the server backend. Now, let's consider the front end and how to make our program more secure.
-
-Stage 3 requires you to interpret JavaScript (JS) and modify the JS code to make the front-end code more secure.
-
-#### Stage 3.1 - Invalid Forwarding
+### Stage 3.1 - Invalid Forwarding
 
 **Vulnerability Addressed:** Invalid Forwarding and Redirecting
 
@@ -262,7 +277,7 @@ Our current implementation uses `window.ref` to handle page redirection, which m
 **Implementation Notes:**
 - Stage 3.1 will need to be implemented locally on the provided front-end.
 
-#### Stage 3.2 - Token Storage
+### Stage 3.2 - Token Storage
 
 **Vulnerability Addressed:** XSS Attacks on Token Storage
 
