@@ -3,36 +3,26 @@
 ## Table of Contents
 
 - [Assessment Overview](#assessment-overview)
-  - [Scenario](#scenario)
-  - [Task](#task)
 - [Front-End Interface](#front-end-interface)
 - [Video Run-through](#video-run-through)
 - [Setup](#setup)
 - [Running the Front-end](#running-the-front-end)
 - [Stage 1 - Basic](#stage-1---basic)
-  - [Stage 1.1 - Password Hashing](#stage-11---password-hashing)
-  - [Stage 1.2 - Input Validation](#stage-12---input-validation)
-  - [Stage 1.3 - Input Sanitization (XSS Vulnerabilities)](#stage-13---input-sanitization-xss-vulnerabilities)
 - [Stage 2 - Intermediate](#stage-2---intermediate)
-  - [Stage 2.1 - Session Management](#stage-21---session-management)
-  - [Stage 2.2 - CSRF Protection](#stage-22---csrf-protection)
-  - [Stage 2.3 - Race Conditions](#stage-23---race-conditions)
 - [Stage 3 - Advanced](#stage-3---advanced)
-  - [Stage 3.1 - Invalid Forwarding](#stage-31---invalid-forwarding)
-  - [Stage 3.2 - Token Storage](#stage-32---token-storage)
 - [Forum API Description](#forum-api-description)
 
 ## Assessment Overview
 
 ### Scenario
 
-You have been employed as a junior software engineer at **TechSecure Solutions**, a company that specializes in developing secure software architectures. Your task is to fix a broken API for a client, **FastFinance**, a small fintech company that provides financial services through their web and mobile apps. This project will be divided into three stages of development, each increasing in difficulty.
+You have been employed as a junior software engineer at **TechSecure Solutions**, a company that specialises in developing secure software architectures. Your task is to fix a broken API for a client, **FastFinance**, a small fintech company that provides financial services through their web and mobile apps. This project will be divided into three stages of development, each increasing in difficulty.
 
 FastFinance's API has been reported to contain several vulnerabilities that could expose sensitive financial data, leaving their users at risk. You have been provided with the API source code and a report from a security audit highlighting the following security concerns:
 
 ### Task
 
-Students will create a testing report and include relevant documentation such as SAST and DAST tests. The Python API will be built in three stages, ensuring systematic development and comprehensive coverage of all planned functionalities. The creation and submission of the practical component will be completed through the EdStem platform. Its associated documentation will be created on Microsoft Word utilizing the scaffold provided. A submission must be generated before the task's due date on Canvas; this will facilitate accessibility and ease of use for all stakeholders involved in the educational process.
+Students will create a testing report and include relevant documentation such as SAST and DAST tests. The Python API will be built in three stages, ensuring systematic development and comprehensive coverage of all planned functionalities. The creation and submission of the practical component will be completed through the EdStem platform. Its associated documentation will be created on Microsoft Word utilising the scaffold provided. A submission must be generated before the task's due date on Canvas; this will facilitate accessibility and ease of use for all stakeholders involved in the educational process.
 
 ## Front-End Interface
 
@@ -59,9 +49,9 @@ There are a few steps to run the front end. First, we must configure the back-en
     ```
     Host the server on the next available port.
 
-**Note:** Ensure to remove the backslash from the copied URL. The front-end API calls will fail if the URL isn't correct.
+    **Note:** Ensure to remove the backslash from the copied URL. The front-end API calls will fail if the URL isn't correct.
 
-**Warning:** Using the run button on the Ed workspace will not host the server. You need to manually open up the terminal and run the Python script to host the Flask back-end server.
+    **Warning:** Using the run button on the Ed workspace will not host the server. You need to manually open up the terminal and run the Python script to host the Flask back-end server.
 
 ## Running the Front-end
 
@@ -95,7 +85,7 @@ Your implementation must include the following security features:
 
 1. **Confidentiality**
     - Replace the `password` attribute with `password_hash`, ensuring the password is never stored in plain text.
-    - Create the `hash_password` method to handle password hashing (using the SHA256 algorithm). Call this method during the initialization process.
+    - Create the `hash_password` method to handle password hashing (using the SHA256 algorithm). Call this method during the initialisation process.
 
 2. **Authentication**
     - Update the `verify_password` method to also call the `hash_password` method to validate if the stored (hashed) password matches the input password.
@@ -132,7 +122,7 @@ In this task, you will implement input validation to ensure that data sent from 
 users = {}  # Stored in data.py in your code
 
 def admin_auth_register(email):
-    email = email.lower()  # Normalize to lowercase for case sensitivity
+    email = email.lower()  # Normalise to lowercase for case sensitivity
     if email in users:
         abort(400, description="Email already exists in data")
 ```
@@ -141,13 +131,13 @@ def admin_auth_register(email):
 
 **Note:** HTTP servers should primarily obtain data with minimal logic to reduce complexity and improve readability.
 
-### Stage 1.3 - Input Sanitization (XSS Vulnerabilities)
+### Stage 1.3 - Input Sanitisation (XSS Vulnerabilities)
 
 **Vulnerabilities Addressed:** Cross-site Scripting (XSS)
 
-Similar to Stage 1.2, your task is to sanitize any potentially harmful user input to minimize cross-site scripting (XSS) attacks. Implement this across all routes that retrieve data from user inputs.
+Similar to Stage 1.2, your task is to sanitise any potentially harmful user input to minimise cross-site scripting (XSS) attacks. Implement this across all routes that retrieve data from user inputs.
 
-**Example: Sanitizing User Input**
+**Example: Sanitising User Input**
 ```python
 users = {
     ...
@@ -163,7 +153,7 @@ users = {
 
 **Execution Efficiency:** Session Management  
 **Vulnerability Addressed:** Broken Authentication and Session Management  
-**Security Feature:** Authorization
+**Security Feature:** Authorisation
 
 Currently, the broken implementation uses the client's email as the session token, which is vulnerable to session hijacking. Your task is to implement secure session management through session tokens to authenticate specific users.
 
@@ -198,7 +188,7 @@ if user.validate_token(invalid_token):
 ```
 
 **Implementation Notes:**
-- Ensure that the user is authorized to use the session token for every single server route.
+- Ensure that the user is authorised to use the session token for every single server route.
 - **Hint:** Create a helper function that can be called inside each route to validate both the session and CSRF token.
 
 ### Stage 2.2 - CSRF Protection
@@ -206,9 +196,9 @@ if user.validate_token(invalid_token):
 **Security Features:** Encryption  
 **Vulnerability Addressed:** Cross-site Request Forgery (CSRF)
 
-Consider a situation where an attacker gains control of a user session and obtains the session token. The existing code allows them to create a legitimate request on behalf of an unauthorized user.
+Consider a situation where an attacker gains control of a user session and obtains the session token. The existing code allows them to create a legitimate request on behalf of an unauthorised user.
 
-Your task is to create Cross-Site Request Forgery (CSRF) tokens to ensure that only authorized users can make API requests to the server.
+Your task is to create Cross-Site Request Forgery (CSRF) tokens to ensure that only authorised users can make API requests to the server.
 
 **Specifications:**
 
@@ -230,9 +220,9 @@ csrf_token = user.csrf_token
 session_token = user.token
 
 if user.validate_token(session_token) and user.validate_csrf_token(csrf_token):
-    print("API request is authorized.")
+    print("API request is authorised.")
 else:
-    print("Unauthorized API request. Invalid session or CSRF token.")
+    print("Unauthorised API request. Invalid session or CSRF token.")
 ```
 
 **Note:** The `csrf_token` is stored on the front end and sent via the header of the HTTP request and encrypted.
@@ -312,7 +302,7 @@ const response = await fetch(SERVER_URL + '/auth/login', {
 
 ## Forum API Description
 
-### Authorization Routes
+### Authorisation Routes
 
 #### `POST /auth/register`
 
@@ -380,7 +370,7 @@ Logs out the currently authenticated user.
 
 Validates if a user is in session.
 
-**Note:** `/auth/validate` API is called from the front-end to grant authorization to certain web pages.
+**Note:** `/auth/validate` API is called from the front-end to grant authorisation to certain web pages.
 
 - **Parameters:**
     - `sessionToken` (body)
@@ -454,3 +444,4 @@ Adds a reply to a specific forum.
     - **400:** If any of the following are true:
         - Reply is more than 100 characters in length.
         - Reply is an empty string.
+```
