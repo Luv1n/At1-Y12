@@ -37,9 +37,6 @@ Our front-end for the Forum application is written in **Next.js**.
 There are a few steps to run the front end. First, we must configure the back-end and front-end together:
 
 1. **Clone the GitHub repository:**
-    ```bash
-    git clone https://github.com/R-Ianni/12SE-AT1
-    ```
 
 2. **Install Node.js** (the JS runtime environment).
 
