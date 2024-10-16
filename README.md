@@ -28,10 +28,6 @@ Students will create a testing report and include relevant documentation such as
 
 Our front-end for the Forum application is written in **Next.js**.
 
-## Video Run-through
-
-[Insert Video Link Here]
-
 ## Setup
 
 There are a few steps to run the front end. First, we must configure the back-end and front-end together:
