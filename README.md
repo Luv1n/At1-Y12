@@ -86,7 +86,7 @@ This section guides you through installing the necessary Python packages and run
    Start the Flask server by executing:
 
    ```bash
-   python3 server.py
+   python server.py
    ```
 
    **Notes:**
