@@ -26,7 +26,7 @@ Students will create a testing report and include relevant documentation such as
 
 ## Front-End Interface
 
-Our front-end for the Forum application is written in **Next.js**.
+Our front-end for the Forum application is written in **Next.js**. HELLO
 
 ## Setup
 
