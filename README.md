@@ -536,4 +536,3 @@ Adds a reply to a specific forum.
     - **400:** If any of the following are true:
         - Reply is more than 100 characters in length.
         - Reply is an empty string.
-```
