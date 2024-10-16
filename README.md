@@ -5,10 +5,9 @@
 ## Table of Contents
 
 - [Assessment Overview](#assessment-overview)
-- [Front-End Interface](#front-end-interface)
-- [Video Run-through](#video-run-through)
 - [Setup](#setup)
-- [Running the Front-end](#running-the-front-end)
+- [Backend Setup](#backend-setup)
+- [Frontend Setup](#frontend-setup)
 - [Stage 1 - Basic](#stage-1---basic)
 - [Stage 2 - Intermediate](#stage-2---intermediate)
 - [Stage 3 - Advanced](#stage-3---advanced)
@@ -26,43 +25,143 @@ FastFinance's API has been reported to contain several vulnerabilities that coul
 
 Students will create a testing report and include relevant documentation such as SAST and DAST tests. The Python API will be built in three stages, ensuring systematic development and comprehensive coverage of all planned functionalities. The creation and submission of the practical component will be completed through the EdStem platform. Its associated documentation will be created on Microsoft Word utilising the scaffold provided. A submission must be generated before the task's due date on Canvas; this will facilitate accessibility and ease of use for all stakeholders involved in the educational process.
 
-## Front-End Interface
-
-Our front-end for the Forum application is written in **Next.js**. HELLO
-
 ## Setup
 
-There are a few steps to run the front end. First, we must configure the back-end and front-end together:
+This section covers the initial steps to clone the repository, open it in Visual Studio Code (VS Code), and understand the project's structure. Proper setup ensures that both the front-end and back-end components function correctly.
 
-1. **Clone the GitHub repository:**
+### Step-by-Step Instructions
 
-2. **Install Node.js** (the JS runtime environment).
+1. **Clone the GitHub Repository**
 
-3. **Execute the server:**
-    ```bash
-    python3 server.py
-    ```
-    Host the server on the next available port.
+   Begin by cloning the repository to your local machine. Open Visual Studio Code, create a new terminal window and execute the following command:
 
-    **Note:** Ensure to remove the backslash from the copied URL. The front-end API calls will fail if the URL isn't correct.
+   ```bash
+   git clone https://github.com/your-username/your-repository.git
+   ```
 
-    **Warning:** Using the run button on the Ed workspace will not host the server. You need to manually open up the terminal and run the Python script to host the Flask back-end server.
+   *Replace `https://github.com/your-username/your-repository.git` with the actual URL of your repository. You can find this URL by clicking the green button labeled 'Code' and copying the link under HTTPS.*
 
-## Running the Front-end
+2. **Open the Project in VS Code**
 
-1. **Install Dependencies:**
-    ```bash
-    npm install
-    ```
-    Execute this command in the terminal within your current working directory or front-end folder to install all external libraries.
+   Once the repository is cloned open it in Visual Studio Code. You can navigate to **File** and then **Open Folder** then select your project directory.
 
-2. **Start the Front-End Server:**
-    ```bash
-    npm run dev
-    ```
-    The terminal should generate a URL where you can interact with the front end, similar to `https://localhost:3000`.
+3. **Understand the Project Structure**
 
-    **Note:** You will need to close and reopen the server using `python3 server.py` for any changes on the server back-end to take effect on the front-end.
+   The project is organized into two main folders:
+
+   - **`backend/`**: Contains all back-end related code and configurations.
+   - **`frontend/`**: Contains all front-end related code and configurations.
+
+4. **Ensure Correct Working Directory**
+
+   When running commands to start the front-end or back-end servers, it's crucial to be in the appropriate directory:
+
+   - **Back-End Commands**: Should be run from the `backend/` folder.
+   - **Front-End Commands**: Should be run from the `frontend/` folder.
+
+   *Always verify your current working directory using `pwd` (Unix/Linux/macOS) or `cd` (Windows) before executing commands.*
+
+## Backend Setup
+
+This section guides you through installing the necessary Python packages and running the back-end server. The back-end handles all server-side operations, including API endpoints and database interactions.
+
+### Step-by-Step Instructions
+
+1. **Navigate to the Backend Folder**
+
+   Ensure you're in the `backend/` directory:
+
+   ```bash
+   cd backend
+   ```
+
+2. **Install Required Packages**
+
+   Use `pip` to install all necessary packages listed in `requirements.txt`:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Run the Back-End Server**
+
+   Start the Flask server by executing:
+
+   ```bash
+   python3 server.py
+   ```
+
+   **Notes:**
+
+   - The server will host on the next available port. Monitor the terminal output to identify the exact URL (e.g., `http://127.0.0.1:5000`).
+   - **Important**: Ensure you **remove any trailing backslashes** from the copied URL. Incorrect URLs can lead to failed API calls from the front-end.
+
+4. **Keep the Terminal Open**
+
+   The Flask server runs in the foreground. Do not close the terminal while the server is running. To stop the server, press `Ctrl+C`.
+
+## Frontend Setup
+
+This section details how to install the necessary Node.js packages and start the front-end server. The front-end provides the user interface and interacts with the back-end API.
+
+### Step-by-Step Instructions
+
+1. **Navigate to the Frontend Folder**
+
+   Open a new terminal window or tab, and change your directory to `frontend/`:
+
+   ```bash
+   cd frontend
+   ```
+
+2. **Install Node.js (If Not Already Installed)**
+
+   Ensure that Node.js and `npm` (Node Package Manager) are installed on your system. You can download them from the [Node.js Official Website](https://nodejs.org/).
+
+   Verify installation:
+
+   ```bash
+   node -v
+   npm -v
+   ```
+
+3. **Install Front-End Dependencies**
+
+   Use `npm` to install all required packages:
+
+   ```bash
+   npm install
+   ```
+
+   **Notes:**
+
+   - Ensure you're in the `frontend/` directory when running this command.
+   - This command reads the `package.json` file and installs all listed dependencies.
+
+4. **Start the Front-End Server**
+
+   Launch the front-end development server:
+
+   ```bash
+   npm run dev
+   ```
+
+   **What to Expect:**
+
+   - The terminal will display a URL (e.g., `https://localhost:3000`) where the front-end application is hosted.
+   - Open this URL in your web browser to interact with the application.
+
+5. **Interacting with the Application**
+
+   - **API Communication**: The front-end communicates with the back-end server you started earlier. Ensure both servers are running simultaneously.
+   - **Making Changes**:
+     - **Back-End**: If you make changes to the back-end code, restart the Flask server (`python3 server.py`) to apply updates.
+     - **Front-End**: Changes in the front-end code are typically reflected automatically due to hot-reloading. If not, you may need to restart the front-end server.
+
+6. **Important Considerations**
+
+   - **Working Directory**: Always verify your current working directory before executing commands. Front-end commands should be run from the `frontend/` folder.
+   - **Terminal Management**: It's advisable to use separate terminal windows or tabs for the back-end and front-end servers to manage them independently.
 
 ## Stage 1 - Basic
 
@@ -439,4 +538,3 @@ Adds a reply to a specific forum.
     - **400:** If any of the following are true:
         - Reply is more than 100 characters in length.
         - Reply is an empty string.
-```
