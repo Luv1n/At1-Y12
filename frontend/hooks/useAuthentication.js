@@ -10,7 +10,7 @@ export default function useAuthentication() {
     const checkAuthentication = async () => {
       const isValid = await requestValidateToken();
       if (!isValid) {
-        router.replace('/login');
+        window.location.href = "/login";
       }
       setIsAuthenticated(isValid);
     };

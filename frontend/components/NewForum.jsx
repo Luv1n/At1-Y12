@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import styles from '../styles/Forum.module.css';  // Reusing the existing Forum styles
 import CommentBox from './CommentBox';
 import SubmitBox from './SubmitButton';
-import { useRouter } from 'next/router';
 import requestUserCreateForum from '../services/requestCreateForum'; // Import the request function
 
 export default function NewForum({ onSubmit }) {
   const [title, setTitle] = useState('');
   const [comment, setComment] = useState('');
-  const router = useRouter();
 
   const handleSubmit = async () => {
     if (title.trim() && comment.trim()) {
