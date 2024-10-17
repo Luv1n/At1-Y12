@@ -344,15 +344,28 @@ Your task is to modify the code to ensure data handling is done asynchronously. 
 ```python
 import asyncio
 
-async def async_helper():
-    await asyncio.sleep(2)  # Simulate a delay for async I/O-bound task
-    return {"name": "Flask Async", "description": "This is an async route"}
+# Asynchronous function to check if a user exists based on email
+async def helper_user_exists(email):
 
-@app.route("/get-data")
-async def get_data():
-    # Await the async database query
-    data = await async_db_query()
-    return jsonify(data)
+    await asyncio.sleep(2)
+    user = User.query.filter_by(email=email).first()
+
+    # Return True if the user exists, otherwise False
+    return user is not None
+
+# Asynchronous route to handle user existence check
+@app.route('/check-user', methods=['POST'])
+async def check_user():
+    data = request.json
+    email = data.get('email')
+
+    # Await the helper function to check if the user exists
+    user_exists = await helper_user_exists(email)
+
+    if user_exists:
+        return jsonify({"message": "User exists", "email": email}), 200
+    else:
+        return jsonify({"message": "User not found", "email": email}), 404
 ```
 
 ## Stage 3 - Advanced
