@@ -31,7 +31,7 @@ export const Login = () => {
           const token = await requestUserAuthRegister(email, password, firstName, lastName);
           localStorage.setItem('authToken', token);
 
-          router.push('/forum'); 
+          window.location.href = "/forum";
         } catch (error) {
           console.error('Registration failed:', error);
           alert(`Registration failed: ${error.message}`); // Show a popup with the error message

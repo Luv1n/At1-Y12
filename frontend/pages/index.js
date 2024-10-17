@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 export default function Home() {
   const router = useRouter();
   useEffect(() => {
-    router.replace('/login');
+    window.location.href = "/login";
   })
   return (
     <div className={styles.container}>

@@ -6,9 +6,8 @@ import {
   MDBInput,
 } from 'mdb-react-ui-kit';
 import { useRouter } from 'next/router';
-import styles from '../styles/Login.module.css'; // Import CSS Module
+import styles from '../styles/Login.module.css'; 
 import requestUserAuthLogin from '../services/requestLogin';
-// import requestUserAuthRegister from '../services/requestRegister';
 
 export const Login = () => {
     useEffect(() => {
@@ -26,16 +25,12 @@ export const Login = () => {
       event.preventDefault(); 
     
       try {
-        // Await the registration function
         const token = await requestUserAuthLogin(email, password);
         localStorage.setItem('authToken', token);
-        console.log(`The r and t token for login is ${token}`);
-                
-        // Redirect after logging
-        router.push('/forum'); // Redirect to the forum page on success
+        window.location.href = "/forum";
       } catch (error) {
           console.error('Login failed:', error);
-          alert(`Login failed: ${error.message}`); // Show a popup with the error message
+          alert(`Login failed: ${error.message}`);
       }
     };
 

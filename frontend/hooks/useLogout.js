@@ -11,7 +11,7 @@ export default function useLogout() {
       console.log('User logged out successfully.');
 
       // Redirect to the login page after successful logout
-      router.replace('/login');
+      window.location.href = "/login";
     } catch (error) {
       console.error('Logout failed:', error);
     }
