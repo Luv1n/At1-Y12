@@ -338,13 +338,21 @@ const response = await fetch(SERVER_URL + '/auth/login', {
 
 **Vulnerability Addressed:** Race Conditions
 
-Your task is to modify the code to ensure data handling is done asynchronously. In each server route or helper function that requires data insertion or deletion, implement `async` and `await` to handle data updates concurrently.
+Your task is to modify the code to ensure data handling is done asynchronously. In each server route or helper function that requires data insertion or deletion, implement `async` and `await` to prevent the code from stopping execution. 
 
 **Example:**
 ```python
-# Ensure Flask is installed with async support
-# Install Flask with async:
-pip install flask[async]
+import asyncio
+
+async def async_helper():
+    await asyncio.sleep(2)  # Simulate a delay for async I/O-bound task
+    return {"name": "Flask Async", "description": "This is an async route"}
+
+@app.route("/get-data")
+async def get_data():
+    # Await the async database query
+    data = await async_db_query()
+    return jsonify(data)
 ```
 
 ## Stage 3 - Advanced
