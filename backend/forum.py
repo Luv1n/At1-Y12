@@ -35,7 +35,7 @@ def user_add_reply(forum_id, reply_text, session_token):
             break  # Exit the loop once the forum is found
 
     if not target_forum:
-        abort(406, description="Invalid forumId")
+        abort(404, description="Forum not found with invalid forum id")
 
     # Retrieve the author from the users dictionary using the session token
     author = admin_retrieve_author_name(session_token)

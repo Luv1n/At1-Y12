@@ -1,6 +1,6 @@
 {
     "backend": {
-      "url": "https://127-0-0-1-5005-h4eahrroa9mrk2t9fum47g5svo.au.edusercontent.com",
+      "url": "http://127.0.0.1:5005",
       "port": 5005
     }
   }

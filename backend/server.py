@@ -9,8 +9,9 @@ from data import admin_retrieve_forum_data
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SESSION_COOKIE_HTTPONLY'] = True  # Prevent XXS and JS 
-app.config['SESSION_COOKIE_SECURE'] = True  # Ensures cookies are only sent over HTTPS
 app.config['SESSION_COOKIE_SAMESITE'] = 'Strict'  # Helps prevent CSRF attacks from different sites
+
+CORS(app)
 
 @app.route('/') 
 def index():
@@ -48,7 +49,7 @@ def login_user():
 @app.route('/auth/logout', methods=['DELETE'])
 def logout_user():
     data = request.json
-    session_token = data['session_token']
+    session_token = data['sessionToken']
 
     try:
         user_auth_logout(session_token)
@@ -63,7 +64,7 @@ def create_new_forum():
     data = request.json
     forum_title = data['title']
     forum_question = data['forumQuestion']
-    session_token = data['session_token']
+    session_token = data['sessionToken']
 
     try:
         user_create_forum(forum_title, forum_question, session_token)
@@ -82,7 +83,7 @@ def retrieve_all_forums():
 @app.route('/auth/validate', methods=['POST'])
 def validate_token():
     data = request.json
-    session_token = data['session_token']
+    session_token = data['sessionToken']
 
     try:
         if (user_auth_validate_token(session_token)):
@@ -95,7 +96,7 @@ def store_reply():
     data = request.json
     forum_id = data['forumId']
     reply_comment = data['reply']
-    session_token = data['session_token']
+    session_token = data['sessionToken']
 
     try:
         user_add_reply(forum_id, reply_comment, session_token)
