@@ -1,9 +1,6 @@
 # Global ignore
 .DS_Store
 *.log
-.env
-.env.local
-.env.*.local
 node_modules/
 npm-debug.log*
 yarn-error.log*
