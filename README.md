@@ -207,7 +207,7 @@ else:
 
 In this task, you will implement input validation to ensure that data sent from the user's client-side (via an API request) meets specific criteria before being processed by the back end.
 
-- **API Description:** Refer to the ed-page for details on each route and their respective functions.
+- **API Description:** Refer to the API Description section for details on each route and their respective functions.
 - **Server Routes:** Located in `server.py` (e.g., `/auth/register/`).
 - **Helper Functions:** Located within each route (e.g., `admin_auth_register`).
 
